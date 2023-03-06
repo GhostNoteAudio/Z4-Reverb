@@ -1,5 +1,5 @@
 import xml.etree.ElementTree as ET
-tree = ET.parse('CloudSeedXT.jucer')
+tree = ET.parse('Z4Reverb.jucer')
 root = tree.getroot()
 
 with open('env.txt', 'w') as f:
