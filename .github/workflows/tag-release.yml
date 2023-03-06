@@ -6,7 +6,7 @@ on:
       project_name:
         description: 'Project name'
         required: true
-        default: 'CloudSeedXT'
+        default: 'Z4Reverb'
       version:
         description: 'Version Number'     
         required: true
