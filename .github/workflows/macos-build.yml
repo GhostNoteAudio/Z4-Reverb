@@ -1,0 +1,81 @@
+name: MacOS Build
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: true
+
+    - name: Copy JUCE to HOME directory
+      run: mv JUCE ${HOME}/JUCE
+
+    - name: Extract Envrionment variable
+      run: python3 extract_env_vars.py
+      shell: bash
+
+    - name: Set Environment Variables
+      uses: tw3lveparsecs/github-actions-setvars@v0.1
+      with:
+        envFilePath: ./env.txt
+
+    - name: Show env vars
+      run: |
+        echo VERSION: ${{env.VERSION}}
+        echo PLUGIN_NAME: ${{env.PLUGIN_NAME}}
+        echo PROJECT_NAME: ${{env.PROJECT_NAME}}
+        echo COMPANY_NAME: ${{env.COMPANY_NAME}}
+        echo COMPANY_WEBSITE: ${{env.COMPANY_WEBSITE}}
+        echo VS_BUILD_DIR: ${{env.VS_BUILD_DIR}}
+        echo JUCE_DIR: ${{env.JUCE_DIR}}
+        echo JUCE_REL_DIR: ${{env.JUCE_REL_DIR}}
+      shell: bash 
+
+    - name: echo HOME
+      run: echo ${HOME}
+
+    - name: Patch Packaging File
+      run: python3 patch_macos_packaging.py
+
+    - name: Build
+      uses: sersoft-gmbh/xcodebuild-action@v2
+      with:
+        project: Builds/MacOSX/${{env.PROJECT_NAME}}.xcodeproj
+        scheme: ${{env.PROJECT_NAME}} - All
+        destination: platform=macOS
+        action: build
+
+    - name: List output files
+      run: |
+        ls -lasc ${HOME}/Library/Audio/Plug-Ins/Components
+        ls -lasc ${HOME}/Library/Audio/Plug-Ins/VST3
+    
+    - name: Installing Packaging tool
+      run: |
+        curl http://s.sudre.free.fr/Software/files/Packages.dmg --output Packages.dmg
+        hdiutil attach Packages.dmg
+        export PACKAGES_VERSION=$(ls -l /Volumes/ | grep Packages | awk '{print $10}')
+        echo $PACKAGES_VERSION
+        sudo installer -package "/Volumes/Packages ${PACKAGES_VERSION}/Install Packages.pkg" -target /Applications
+
+    - name: Run Packaging
+      run: packagesbuild "./Packaging/Packaging.pkgproj"
+
+    - name: Rename output file
+      run: mv "./Packaging/build/${{env.PLUGIN_NAME}}.pkg" "./Packaging/build/${{env.PROJECT_NAME}}-v${{env.VERSION}}.pkg"
+
+    - uses: actions/upload-artifact@v3
+      with:
+        name: ${{env.PROJECT_NAME}}-v${{env.VERSION}}.pkg
+        path: "./Packaging/build/${{env.PROJECT_NAME}}-v${{env.VERSION}}.pkg"

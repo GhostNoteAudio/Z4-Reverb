@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="G3V5cZ" name="Z4Reverb" projectType="audioplug" useAppConfig="0"
+              addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1"
+              pluginFormats="buildAU,buildStandalone,buildVST3" pluginName="Z4 Reverb"
+              pluginManufacturer="Ghost Note Audio" pluginManufacturerCode="Gnau"
+              pluginAUIsSandboxSafe="1" pluginVST3Category="Fx,Reverb" companyName="Ghost Note Audio"
+              version="1.0.0" companyWebsite="https://ghostnoteaudio.uk" userNotes="JUCE_DIR=C:\Dev\JUCE&#10;JUCE_REL_DIR=..\..\..\..\..\Dev\JUCE"
+              pluginCode="Gz4r" defines="BUFFER_SIZE=1024">
+  <MAINGROUP id="IrhCPn" name="Z4Reverb">
+    <GROUP id="{1E8DD92F-7C83-43D0-2970-4C9E5B6221C5}" name="Binary Data">
+      <FILE id="xvCMWW" name="logo.svg" compile="0" resource="1" file="logo.svg"/>
+      <FILE id="DT24Fc" name="logo.png" compile="0" resource="1" file="logo.png"/>
+      <FILE id="BAR32h" name="OpenSans-Light.ttf" compile="0" resource="1"
+            file="OpenSans/OpenSans-Light.ttf"/>
+      <FILE id="Y6vEuW" name="OpenSans-Medium.ttf" compile="0" resource="1"
+            file="OpenSans/OpenSans-Medium.ttf"/>
+      <FILE id="CwrZPq" name="OpenSans-Regular.ttf" compile="0" resource="1"
+            file="OpenSans/OpenSans-Regular.ttf"/>
+      <FILE id="E9SQz7" name="OpenSans-SemiBold.ttf" compile="0" resource="1"
+            file="OpenSans/OpenSans-SemiBold.ttf"/>
+    </GROUP>
+    <GROUP id="{EB45CFC1-16D6-A877-5A89-0D37B54FF64B}" name="Source">
+      <FILE id="nR3qRw" name="RoundToggle.h" compile="0" resource="0" file="Source/RoundToggle.h"/>
+      <GROUP id="{0E0A2AE3-5CC3-FF45-82F1-96D1D40278AF}" name="DSP">
+        <FILE id="WrLT2J" name="Biquad.cpp" compile="1" resource="0" file="Source/DSP/Biquad.cpp"/>
+        <FILE id="sf4b5H" name="Biquad.h" compile="0" resource="0" file="Source/DSP/Biquad.h"/>
+        <FILE id="VVqakV" name="ControllerZ4.h" compile="0" resource="0" file="Source/DSP/ControllerZ4.h"/>
+        <FILE id="LoQPg2" name="GranularPitchShift.h" compile="0" resource="0"
+              file="Source/DSP/GranularPitchShift.h"/>
+        <FILE id="VcGn3Q" name="Hp1.h" compile="0" resource="0" file="Source/DSP/Hp1.h"/>
+        <FILE id="BCicFV" name="Lp1.h" compile="0" resource="0" file="Source/DSP/Lp1.h"/>
+        <FILE id="jhW9fP" name="ModulatedAllpass.h" compile="0" resource="0"
+              file="Source/DSP/ModulatedAllpass.h"/>
+        <FILE id="DZKDuX" name="ModulatedDelay.h" compile="0" resource="0"
+              file="Source/DSP/ModulatedDelay.h"/>
+        <FILE id="gK9XOZ" name="Utils.h" compile="0" resource="0" file="Source/DSP/Utils.h"/>
+        <FILE id="d5k735" name="Z4Rev.h" compile="0" resource="0" file="Source/DSP/Z4Rev.h"/>
+      </GROUP>
+      <FILE id="Wr5mwj" name="InputDialog.h" compile="0" resource="0" file="Source/InputDialog.h"/>
+      <FILE id="niRPfx" name="RoundedPanel.h" compile="0" resource="0" file="Source/RoundedPanel.h"/>
+      <FILE id="eYLTtc" name="Presets.h" compile="0" resource="0" file="Source/Presets.h"/>
+      <FILE id="KxVtV2" name="SpinToggle.h" compile="0" resource="0" file="Source/SpinToggle.h"/>
+      <FILE id="vXodax" name="Stylers.h" compile="0" resource="0" file="Source/Stylers.h"/>
+      <FILE id="oFdoca" name="Spinner.h" compile="0" resource="0" file="Source/Spinner.h"/>
+      <FILE id="P6zibc" name="TrialMode.h" compile="0" resource="0" file="Source/TrialMode.h"/>
+      <FILE id="R2anZ4" name="AboutDialog.h" compile="0" resource="0" file="Source/AboutDialog.h"/>
+      <FILE id="Vs3NM1" name="Authentication.h" compile="0" resource="0"
+            file="Source/Authentication.h"/>
+      <FILE id="ZYq0G4" name="ModalOverlay.h" compile="0" resource="0" file="Source/ModalOverlay.h"/>
+      <FILE id="BFSWNE" name="Meter.h" compile="0" resource="0" file="Source/Meter.h"/>
+      <FILE id="T1l4lh" name="Parameters.cpp" compile="1" resource="0" file="Source/Parameters.cpp"/>
+      <FILE id="qe56c9" name="Parameters.h" compile="0" resource="0" file="Source/Parameters.h"/>
+      <FILE id="DlcZJG" name="LayoutUtils.h" compile="0" resource="0" file="Source/LayoutUtils.h"/>
+      <FILE id="SbKi5Z" name="RotaryKnobDot.h" compile="0" resource="0" file="Source/RotaryKnobDot.h"/>
+      <FILE id="yYKM49" name="RotaryKnobLive.h" compile="0" resource="0"
+            file="Source/RotaryKnobLive.h"/>
+      <FILE id="UoD90s" name="PluginProcessor.cpp" compile="1" resource="0"
+            file="Source/PluginProcessor.cpp"/>
+      <FILE id="AXylRZ" name="PluginProcessor.h" compile="0" resource="0"
+            file="Source/PluginProcessor.h"/>
+      <FILE id="j99iFG" name="PluginEditor.cpp" compile="1" resource="0"
+            file="Source/PluginEditor.cpp"/>
+      <FILE id="W6IiHL" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+    </GROUP>
+  </MAINGROUP>
+  <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
+  <EXPORTFORMATS>
+    <VS2022 targetFolder="Builds/VisualStudio2022">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug"/>
+        <CONFIGURATION isDebug="0" name="Release"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path="C:\Dev\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_devices" path="C:\Dev\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_formats" path="C:\Dev\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="C:\Dev\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_processors" path="C:\Dev\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_utils" path="C:\Dev\JUCE\modules"/>
+        <MODULEPATH id="juce_core" path="C:\Dev\JUCE\modules"/>
+        <MODULEPATH id="juce_cryptography" path="C:\Dev\JUCE\modules"/>
+        <MODULEPATH id="juce_data_structures" path="C:\Dev\JUCE\modules"/>
+        <MODULEPATH id="juce_events" path="C:\Dev\JUCE\modules"/>
+        <MODULEPATH id="juce_graphics" path="C:\Dev\JUCE\modules"/>
+        <MODULEPATH id="juce_gui_basics" path="C:\Dev\JUCE\modules"/>
+        <MODULEPATH id="juce_gui_extra" path="C:\Dev\JUCE\modules"/>
+      </MODULEPATHS>
+    </VS2022>
+    <XCODE_MAC targetFolder="Builds/MacOSX">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="0" name="Release"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path="C:\Dev\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_devices" path="C:\Dev\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_formats" path="C:\Dev\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="C:\Dev\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_processors" path="C:\Dev\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_utils" path="C:\Dev\JUCE\modules"/>
+        <MODULEPATH id="juce_core" path="C:\Dev\JUCE\modules"/>
+        <MODULEPATH id="juce_cryptography" path="C:\Dev\JUCE\modules"/>
+        <MODULEPATH id="juce_data_structures" path="C:\Dev\JUCE\modules"/>
+        <MODULEPATH id="juce_events" path="C:\Dev\JUCE\modules"/>
+        <MODULEPATH id="juce_graphics" path="C:\Dev\JUCE\modules"/>
+        <MODULEPATH id="juce_gui_basics" path="C:\Dev\JUCE\modules"/>
+        <MODULEPATH id="juce_gui_extra" path="C:\Dev\JUCE\modules"/>
+      </MODULEPATHS>
+    </XCODE_MAC>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"
+            useGlobalPath="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+  </MODULES>
+</JUCERPROJECT>

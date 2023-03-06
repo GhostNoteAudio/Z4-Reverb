@@ -1,0 +1,58 @@
+name: Tag new release
+
+on: 
+  workflow_dispatch:
+    inputs:
+      project_name:
+        description: 'Project name'
+        required: true
+        default: 'CloudSeedXT'
+      version:
+        description: 'Version Number'     
+        required: true
+        default: '1.0.0'
+
+env:
+  WIN_FILE: ${{github.event.inputs.project_name}}-v${{github.event.inputs.version}}-Setup.exe
+  MAC_FILE: ${{github.event.inputs.project_name}}-v${{github.event.inputs.version}}.pkg
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Print artifact names
+      run: |
+        echo Windows artifact: ${{env.WIN_FILE}}
+
+    - name: Download Windows artifact
+      id: download-artifact-win
+      uses: dawidd6/action-download-artifact@v2
+      with:
+        github_token: ${{secrets.GITHUB_TOKEN}}
+        workflow: windows-build.yml
+        workflow_conclusion: success
+        branch: master
+        name: ${{env.WIN_FILE}}
+
+    - name: Download MacOS artifact
+      id: download-artifact-mac
+      uses: dawidd6/action-download-artifact@v2
+      with:
+        github_token: ${{secrets.GITHUB_TOKEN}}
+        workflow: macos-build.yml
+        workflow_conclusion: success
+        branch: master
+        name: ${{env.MAC_FILE}}
+
+    - name: Tag and release
+      uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{secrets.GITHUB_TOKEN}}"
+        automatic_release_tag: ${{github.event.inputs.version}}
+        title: Release ${{github.event.inputs.version}}
+        prerelease: false
+        files: |
+          ${{env.WIN_FILE}}
+          ${{env.MAC_FILE}}
+  

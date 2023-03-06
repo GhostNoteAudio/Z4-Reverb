@@ -1,0 +1,41 @@
+#include "Parameters.h"
+
+const char* ParameterIds[Parameter::COUNT] = {
+    "Dry",
+    "Wet",
+    "Decay",
+    "Diffuse",
+    "EarlySize",
+    "LateSize",
+    "LowCut",
+    "HighCut",
+    "Modulate",
+    "ModRate",
+    "Lows",
+    "Highs",
+    "Stages",
+    "Shimmer",
+    "Stereo",
+    "Saturate",
+    "Freeze",
+};
+
+const char* ParameterLabel[Parameter::COUNT] = {
+    "Dry",
+    "Wet",
+    "Decay",
+    "Diffuse",
+    "Early Size",
+    "Late Size",
+    "Low Cut",
+    "High Cut",
+    "Modulate",
+    "Mod Rate",
+    "Lows",
+    "Highs",
+    "Stages",
+    "Shimmer",
+    "Stereo",
+    "Saturate",
+    "Freeze",
+};

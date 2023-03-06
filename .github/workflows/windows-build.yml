@@ -1,0 +1,61 @@
+name: Windows Build
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: true
+
+    - name: Add MSBuild to PATH
+      uses: microsoft/setup-msbuild@v1.0.2
+
+    - name: Extract Envrionment variable
+      run: python extract_env_vars.py
+      shell: bash
+
+    - name: Set Environment Variables
+      uses: tw3lveparsecs/github-actions-setvars@v0.1
+      with:
+        envFilePath: ./env.txt
+
+    - name: Show env vars
+      run: |
+        echo VERSION: ${{env.VERSION}}
+        echo PLUGIN_NAME: ${{env.PLUGIN_NAME}}
+        echo PROJECT_NAME: ${{env.PROJECT_NAME}}
+        echo COMPANY_NAME: ${{env.COMPANY_NAME}}
+        echo COMPANY_WEBSITE: ${{env.COMPANY_WEBSITE}}
+        echo VS_BUILD_DIR: ${{env.VS_BUILD_DIR}}
+        echo JUCE_DIR: ${{env.JUCE_DIR}}
+        echo JUCE_REL_DIR: ${{env.JUCE_REL_DIR}}
+      shell: bash 
+
+    - name: Patch Build File
+      run: python patch_windows_build.py
+      shell: bash
+
+    - name: Build
+      working-directory: ${{env.GITHUB_WORKSPACE}}
+      run: msbuild /m /p:Configuration=Release ${{env.VS_BUILD_DIR}}\${{env.PROJECT_NAME}}.sln
+      
+    - name: Building the installer
+      run: |
+        "%programfiles(x86)%\Inno Setup 6\iscc.exe" .\Packaging\InnoSetup.iss /DAppName="${{env.PLUGIN_NAME}}" /DProjectName="${{env.PROJECT_NAME}}" /DAppVersion="${{env.VERSION}}" /DAppPublisher="${{env.COMPANY_NAME}}" /DAppURL="${{env.COMPANY_WEBSITE}}"
+      shell: cmd
+
+    - uses: actions/upload-artifact@v3
+      with:
+        name: ${{env.PROJECT_NAME}}-v${{env.VERSION}}-Setup.exe
+        path: .\Packaging\Releases\${{env.PROJECT_NAME}}-v${{env.VERSION}}-Setup.exe
